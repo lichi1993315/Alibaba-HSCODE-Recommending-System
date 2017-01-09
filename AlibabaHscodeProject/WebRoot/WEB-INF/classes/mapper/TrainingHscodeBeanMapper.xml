@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alibaba.dao.ITrainingHscodeDao">
+	<resultMap id="TrainingHscodeBeanMapper" type="com.alibaba.model.TrainingHscodeBean" >
+		<result property="id" column="id" />
+		<result property="gmt_create" column="gmt_create" />
+		<result property="gmt_modified" column="gmt_modified" />
+		<result property="pid" column="pid" />
+		<result property="pname" column="pname" />
+		<result property="hscode" column="hscode" />
+		<result property="customs" column="customs" />
+		<result property="status" column="status" />
+	</resultMap>
+
+	<select id="getHscodeCatalogy" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT DISTINCT(hscode) FROM training_hscode
+	</select>
+	<select id="findProductByHscode" parameterType="java.lang.String" resultMap="TrainingHscodeBeanMapper">
+		SELECT * FROM training_hscode WHERE hscode=#{hscode}
+	</select>
+
+</mapper>
